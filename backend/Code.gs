@@ -7,7 +7,7 @@
 
 // **CONFIGURATION**
 // Connect to your Google Sheet by entering the Sheet ID below.
-const SHEET_ID = 'YOUR_GOOGLE_SHEET_ID_HERE'; 
+const SHEET_ID = '1hNaHaZovhoJq_6jQDgRfhNCS0SY3kKlO7bvv4Wv68uc';
 
 /**
  * Handle GET Requests
@@ -44,8 +44,8 @@ function doGet(e) {
         ]
       };
       
-      // Store in cache for 15 minutes (900 seconds)
-      cache.put('nexus_all_data', JSON.stringify(data), 900);
+      // Store in cache for 60 seconds so sheet changes reflect quickly
+      cache.put('nexus_all_data', JSON.stringify(data), 60);
       return createJsonResponse({ success: true, data: data });
     }
 

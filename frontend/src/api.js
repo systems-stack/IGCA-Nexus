@@ -17,7 +17,7 @@ export async function fetchBootData(forceRefresh = false) {
     return bootDataPromise;
   }
 
-  bootDataPromise = fetch(`${SCRIPT_URL}?action=getAllData`)
+  bootDataPromise = fetch(`${SCRIPT_URL}?action=getAllData`, { cache: 'no-store' })
     .then(res => {
       if (!res.ok) throw new Error('Network response was not ok');
       return res.json();
