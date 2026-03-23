@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { 
-  Home, 
-  Settings, 
-  FileText, 
-  Users, 
-  Contact, 
-  ChevronLeft, 
-  ChevronRight 
+import {
+  Home,
+  Settings,
+  FileText,
+  Users,
+  Contact,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
-import './Sidebar.css'; 
+import './Sidebar.css';
+import logo from '../assets/igca logo.png';
 
 const NavigationLinks = [
   { path: '/', label: 'Home', icon: Home },
@@ -27,15 +28,15 @@ const Sidebar = () => {
       <div className="sidebar-header">
         {!isCollapsed && (
           <div className="brand">
-            <img src="/logo.png" alt="IGCA Logo" className="brand-logo-img" />
+            <img src={logo} alt="IGCA Logo" className="brand-logo-img" />
             <h2>IGCA NEXUS</h2>
           </div>
         )}
         {isCollapsed && (
-          <img src="/logo.png" alt="IGCA Logo" className="brand-logo-collapsed" />
+          <img src={logo} alt="IGCA Logo" className="brand-logo-collapsed" />
         )}
-        <button 
-          className="collapse-toggle" 
+        <button
+          className="collapse-toggle"
           onClick={() => setIsCollapsed(!isCollapsed)}
         >
           {isCollapsed ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
