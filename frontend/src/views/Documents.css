@@ -97,6 +97,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 16px; /* prevents modal from touching screen edge */
 }
 
 .modal-content {
@@ -106,6 +107,9 @@
   padding: 32px;
   display: flex;
   flex-direction: column;
+  border-radius: 16px;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 .modal-header {
@@ -184,4 +188,31 @@
   border-top-color: white;
   border-radius: 50%;
   animation: spin 1s linear infinite;
+}
+
+/* ─── Mobile (≤768px) ────────────────────────────────── */
+@media (max-width: 768px) {
+  .doc-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-content {
+    padding: 20px;
+    max-width: 100%;
+    border-radius: 12px;
+  }
+
+  .modal-header h2 {
+    font-size: 17px;
+  }
+
+  .modal-footer {
+    flex-direction: column-reverse;
+  }
+
+  .modal-footer .btn-outline,
+  .modal-footer .btn-primary {
+    width: 100%;
+    justify-content: center;
+  }
 }

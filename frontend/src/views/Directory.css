@@ -20,10 +20,12 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 .dir-grid {
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
 
 .member-card {
@@ -91,10 +93,12 @@
   margin: 0;
   display: flex;
   justify-content: space-between;
+  gap: 8px;
 }
 
 .member-details strong {
   color: var(--text-muted);
+  flex-shrink: 0;
 }
 
 .member-actions {
@@ -122,3 +126,28 @@
 .action-btn.email { background-color: #3b82f6; }
 .action-btn.wa { background-color: #10B981; }
 .action-btn.phone { background-color: #6366f1; }
+
+/* ─── Mobile (≤768px) ────────────────────────────────── */
+@media (max-width: 768px) {
+  .dir-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .dir-search {
+    width: 100%;
+  }
+
+  .dir-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .member-card {
+    padding: 16px;
+    gap: 14px;
+  }
+
+  .member-info h3 {
+    font-size: 16px;
+  }
+}

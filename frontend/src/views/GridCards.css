@@ -132,3 +132,60 @@
   height: 200px;
   color: var(--text-muted);
 }
+
+/* ─── Tablet (≤1024px) ───────────────────────────────── */
+@media (max-width: 1024px) {
+  .view-container {
+    padding: 24px;
+  }
+
+  .view-header {
+    margin-bottom: 24px;
+  }
+
+  .view-header h1 {
+    font-size: 24px;
+  }
+
+  .grid-container {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+  }
+}
+
+/* ─── Mobile (≤768px) ────────────────────────────────── */
+@media (max-width: 768px) {
+  .view-container {
+    padding: 16px;
+  }
+
+  .view-header {
+    margin-bottom: 16px;
+  }
+
+  .view-header h1 {
+    font-size: 20px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+  }
+
+  .grid-container {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding-bottom: 24px;
+  }
+
+  /* Prevent hover scale causing overflow on mobile */
+  .glass-card:hover {
+    transform: translateY(-3px) scale(1);
+  }
+}
+
+/* Very small screens (≤400px) */
+@media (max-width: 400px) {
+  .view-container {
+    padding: 12px;
+  }
+}

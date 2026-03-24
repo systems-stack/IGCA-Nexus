@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import ParticleBackground from './components/ParticleBackground';
 import { Toaster } from 'react-hot-toast';
+import { Menu } from 'lucide-react';
 
 // Lazy loading views or direct imports. Using direct for simplicity.
 import Home from './views/Home';
@@ -12,15 +13,32 @@ import Documents from './views/Documents';
 import Directory from './views/Directory';
 
 function App() {
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
+
   return (
     <Router>
       <div className="app-container">
         <Toaster position="bottom-right" toastOptions={{ className: 'glass-panel', style: { background: 'rgba(255,255,255,0.9)', backdropFilter: 'blur(10px)', color: '#1F2937' } }} />
         <ParticleBackground />
         
-        <Sidebar />
+        <Sidebar
+          mobileOpen={mobileNavOpen}
+          onMobileClose={() => setMobileNavOpen(false)}
+        />
         
         <main className="main-content">
+          {/* Mobile top bar with hamburger */}
+          <div className="mobile-topbar">
+            <button
+              className="hamburger-btn"
+              onClick={() => setMobileNavOpen(true)}
+              aria-label="Open navigation menu"
+            >
+              <Menu size={24} />
+            </button>
+            <span className="mobile-brand-label">IGCA NEXUS</span>
+          </div>
+
           {/* Outlet area */}
           <Routes>
             <Route path="/" element={<Home />} />

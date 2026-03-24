@@ -7,12 +7,14 @@
   transition: width 0.3s ease;
   z-index: 100;
   box-shadow: 4px 0 16px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
 }
 
 .sidebar.collapsed {
   width: 80px;
 }
 
+/* ─── Sidebar Header ─────────────────────────────────── */
 .sidebar-header {
   height: 80px;
   display: flex;
@@ -20,6 +22,7 @@
   justify-content: space-between;
   padding: 0 20px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  gap: 8px;
 }
 
 .sidebar.collapsed .sidebar-header {
@@ -31,6 +34,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  min-width: 0;
 }
 
 .brand-logo-img {
@@ -58,8 +62,12 @@
   letter-spacing: 0.5px;
   margin: 0;
   color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
+/* ─── Toggle Buttons ─────────────────────────────────── */
 .collapse-toggle {
   background: transparent;
   border: none;
@@ -71,6 +79,7 @@
   border-radius: 4px;
   padding: 4px;
   transition: all 0.2s;
+  flex-shrink: 0;
 }
 
 .collapse-toggle:hover {
@@ -78,6 +87,27 @@
   color: white;
 }
 
+/* Mobile close button — hidden on desktop */
+.mobile-close-btn {
+  display: none;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  padding: 4px;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.mobile-close-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+/* ─── Nav ────────────────────────────────────────────── */
 .sidebar-nav {
   padding: 20px 12px;
   display: flex;
@@ -115,4 +145,55 @@
 
 .nav-icon {
   flex-shrink: 0;
+}
+
+/* ─── Overlay Backdrop (mobile) ──────────────────────── */
+.sidebar-overlay {
+  display: none;
+}
+
+/* ─── Mobile Breakpoint (≤768px) ─────────────────────── */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -260px;
+    height: 100vh;
+    width: 260px !important; /* override collapsed */
+    z-index: 200;
+    transition: left 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .sidebar.mobile-open {
+    left: 0;
+    box-shadow: 8px 0 32px rgba(0, 0, 0, 0.3);
+  }
+
+  /* On mobile, sidebar is never "collapsed" — always show labels */
+  .sidebar.collapsed .sidebar-header {
+    justify-content: space-between;
+    padding: 0 20px;
+  }
+
+  .sidebar.collapsed .nav-link {
+    justify-content: flex-start;
+    padding: 12px 16px;
+  }
+
+  .mobile-close-btn {
+    display: flex;
+  }
+
+  .collapse-toggle {
+    display: none;
+  }
+
+  .sidebar-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(2px);
+    z-index: 199;
+  }
 }
